@@ -6,6 +6,7 @@ import PieChart from "./PieChart";
 import PestleChart from "./PestleChart";
 import LineChart from "./LineChart";
 import SpikeMap from "./SpikeMap";
+import Button from "react-bootstrap/Button";
 
 const Dashboard = () => {
   const [filters, setFilters] = useState({
@@ -63,6 +64,21 @@ const Dashboard = () => {
     setFilters({ ...filters, [filterName]: value });
   };
 
+  const clearFilters = () => {
+    // Clear all filter keys by setting them to an empty string
+    const updatedFilters = {
+      end_year: "",
+      topic: "",
+      sector: "",
+      region: "",
+      pestle: "",
+      source: "",
+      country: "",
+    };
+
+    // Update the filters state with the modified filters object
+    setFilters(updatedFilters);
+  };
   return (
     <div className="dashboard-container">
       <div className="sidebar">
@@ -86,7 +102,22 @@ const Dashboard = () => {
               ))}
           </select>
         ))}
-        <button onClick={handleApplyFilters}>Apply Filters</button>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-evenly",
+            marginTop: "1rem",
+            fontSize: "25px",
+            fontWeight: "bold",
+          }}
+        >
+          <Button onClick={handleApplyFilters} variant="success">
+            Apply Filters
+          </Button>
+          <Button onClick={clearFilters} variant="success">
+            Clear Filters
+          </Button>
+        </div>
       </div>
       <div className="content">
         <SWOTAnalysis data={filteredData} filters={filters} />
