@@ -107,7 +107,7 @@ const Dashboard = () => {
             display: "flex",
             justifyContent: "space-evenly",
             marginTop: "1rem",
-            fontSize: "25px",
+            fontSize: "20px",
             fontWeight: "bold",
           }}
         >
